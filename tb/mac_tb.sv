@@ -26,7 +26,7 @@ module mac_tb;
 
     for (i = 0; i < n; i = i + 1) begin
       @(negedge clk);
-      {clear, en, a, b} = stim[i];   // apply this cycle's inputs
+      {clear, en, a, b} = stim[i];   // conebine and assign the value
       @(posedge clk);
       #1;                            // let acc settle after the edge
       if (acc !== expv[i]) begin
