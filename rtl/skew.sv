@@ -15,7 +15,8 @@ module skew #(parameter int N = 4) (
         always_ff @(posedge clk) begin
           if (clear) begin
             for (int s = 0; s < k; s++) stage[s] <= '0;
-          end else begin
+          end 
+          else begin
             stage[0] <= in_flat[k*8 +: 8];
             for (int s = 1; s < k; s++) stage[s] <= stage[s-1];
           end
