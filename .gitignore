@@ -2,3 +2,6 @@ sim.out
 dump.vcd
 .DS_Store
 sim_*.out
+obj_*/
+cov_annotated/
+cov_*.dat
