@@ -10,6 +10,7 @@ module suite_tb;
   logic [31:0] mem_c [0:65535];
   logic [31:0] got;
   reg [8*100:1] a_file, b_file, c_file;
+  wire [31:0] chk_fails; 
   integer ncases, base, waited;
   integer errors = 0;
   integer bad_cases = 0;
@@ -17,6 +18,8 @@ module suite_tb;
 
   accel_top #(.N(N)) dut (.clk(clk), .rst(rst), .start(start), .a_col(a_col),
                           .b_row(b_row), .busy(busy), .done(done), .acc_flat(acc_flat));
+  accel_checker #(.N(N)) u_chk (.clk(clk), .rst(rst), .start(start), .busy(busy),
+                                .done(done), .acc_flat(acc_flat), .fails(chk_fails));
 
   always #5 clk = ~clk;
 
@@ -78,9 +81,11 @@ module suite_tb;
       if (case_errors != 0) bad_cases = bad_cases + 1;
     end
 
-    if (errors == 0) $display("PASS: N=%0d, %0d cases", N, ncases);
-    else             $display("FAIL: N=%0d, %0d of %0d cases wrong (%0d wrong outputs)",
-                              N, bad_cases, ncases, errors);
+    if (errors == 0 && chk_fails == 0)
+      $display("PASS: N=%0d, %0d cases, no assertion failures", N, ncases);
+    else
+      $display("FAIL: N=%0d, %0d of %0d cases wrong (%0d wrong outputs), %0d assertion failures",
+               N, bad_cases, ncases, errors, chk_fails);
     $finish;
   end
 endmodule
