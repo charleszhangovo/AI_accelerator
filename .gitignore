@@ -1,3 +1,4 @@
 sim.out
 dump.vcd
 .DS_Store
+sim_*.out
