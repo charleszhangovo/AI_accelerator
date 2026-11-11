@@ -1,0 +1,10 @@
+N=2 stall=0%: PASS: N=2, stall=0%, 206 matrices streamed, backpressure cycles A=818 B=818
+N=2 stall=30%: PASS: N=2, stall=30%, 206 matrices streamed, backpressure cycles A=732 B=725
+N=2 stall=70%: PASS: N=2, stall=70%, 206 matrices streamed, backpressure cycles A=687 B=730
+N=4 stall=0%: PASS: N=4, stall=0%, 206 matrices streamed, backpressure cycles A=1634 B=1634
+N=4 stall=30%: PASS: N=4, stall=30%, 206 matrices streamed, backpressure cycles A=1381 B=1378
+N=4 stall=70%: PASS: N=4, stall=70%, 206 matrices streamed, backpressure cycles A=901 B=876
+N=8 stall=0%: PASS: N=8, stall=0%, 206 matrices streamed, backpressure cycles A=3266 B=3266
+N=8 stall=30%: PASS: N=8, stall=30%, 206 matrices streamed, backpressure cycles A=2713 B=2695
+N=8 stall=70%: PASS: N=8, stall=70%, 206 matrices streamed, backpressure cycles A=1030 B=1203
+STREAM PASS

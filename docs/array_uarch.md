@@ -1,0 +1,3 @@
+Beats: Each matrix arrives as N beats. A beat on the A channel is one column of A, and a beat on the B channel is one row of B. A beat transfers on any clock edge where valid and ready are both high, and the sender must hold valid and data steady until then.
+Whole matrices only: Each FIFO is exactly N deep, so “full” means a whole matrix is waiting. A run starts only when both FIFOs are full. The array never stalls in the middle of a run, because its timing is rigid. All waiting happens between matrices.
+Results are held: A finished result stays valid until the host takes it with res_ready. The next run can’t start before that, since it would wipe the accumulators.

@@ -54,4 +54,11 @@ if grep "^BUG" build_bugs.log | grep -v "caught by" | grep -q .; then
   echo "A bug was NOT caught"; fail=1
 fi
 
+echo "== Streaming interface =="
+if ./scripts/run_stream.sh > build_stream.log 2>&1; then
+  echo "stream tests passed"
+else
+  echo "stream tests FAILED"; tail -20 build_stream.log; fail=1
+fi
+
 if [ $fail -eq 0 ]; then echo "ALL CHECKS PASS"; else echo "SOME CHECKS FAILED"; exit 1; fi
