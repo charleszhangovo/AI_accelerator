@@ -12,11 +12,15 @@ module pe (
 
   always_ff @(posedge clk) begin
     if (clear) begin
-      a_out <= 0;
-      b_out <= 0;
-    end else if (en) begin
+      a_out <= '0;
+      b_out <= '0;
+    end else begin
       a_out <= a_in;
+`ifdef BUG6
+      b_out <= '0;                 // BUG6: B pass-through stuck at zero
+`else
       b_out <= b_in;
+`endif
     end
   end
 endmodule

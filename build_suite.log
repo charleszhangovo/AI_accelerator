@@ -1,0 +1,16 @@
+N=2: 206 cases
+N=4: 206 cases
+N=8: 206 cases
+suite_tb N=2:
+PASS: N=2, 206 cases, no assertion failures
+corner_tb N=2:
+PASS: N=2 corner tests, no assertion failures
+suite_tb N=4:
+PASS: N=4, 206 cases, no assertion failures
+corner_tb N=4:
+PASS: N=4 corner tests, no assertion failures
+suite_tb N=8:
+PASS: N=8, 206 cases, no assertion failures
+corner_tb N=8:
+PASS: N=8 corner tests, no assertion failures
+ALL PASS

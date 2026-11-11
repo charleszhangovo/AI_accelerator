@@ -10,6 +10,7 @@ module accel_top #(parameter int N = 4) (
 );
   logic           clear, en;
   logic [N*8-1:0] a_skewed, b_skewed;
+  logic [N*8-1:0] a_to_array, b_to_array;
 
   array_ctrl #(.N(N)) u_ctrl (
     .clk(clk), .rst(rst), .start(start),
@@ -19,8 +20,21 @@ module accel_top #(parameter int N = 4) (
   skew #(.N(N)) u_skew_a (.clk(clk), .clear(clear), .in_flat(a_col), .out_flat(a_skewed));
   skew #(.N(N)) u_skew_b (.clk(clk), .clear(clear), .in_flat(b_row), .out_flat(b_skewed));
 
+  // Normally the skewed values go straight to the array.
+  // The BUG switches break one connection for the bug-injection tests.
+  always_comb begin
+    a_to_array = a_skewed;
+    b_to_array = b_skewed;
+`ifdef BUG1
+    a_to_array[15:8] = a_col[15:8];   // BUG1: lane 1 of A loses its delay
+`endif
+`ifdef BUG2
+    b_to_array[15:8] = b_row[15:8];   // BUG2: lane 1 of B loses its delay
+`endif
+  end
+
   systolic_array #(.N(N)) u_array (
     .clk(clk), .clear(clear), .en(en),
-    .a_left(a_skewed), .b_top(b_skewed), .acc_flat(acc_flat)
+    .a_left(a_to_array), .b_top(b_to_array), .acc_flat(acc_flat)
   );
 endmodule

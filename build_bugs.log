@@ -1,0 +1,7 @@
+clean design (should show no failure): no failure detected
+BUG1 A skew, lane 1 undelayed: caught by suite_tb corner_tb
+BUG2 B skew, lane 1 undelayed: caught by suite_tb corner_tb
+BUG3 sign extension dropped: caught by suite_tb corner_tb
+BUG4 done one cycle early: caught by suite_tb suite_tb(checker) corner_tb corner_tb(checker)
+BUG5 accumulators never cleared: caught by suite_tb suite_tb(checker) corner_tb corner_tb(checker)
+BUG6 B pass-through stuck at zero: caught by suite_tb corner_tb

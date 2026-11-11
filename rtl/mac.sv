@@ -7,14 +7,18 @@ module mac (
   output logic signed [31:0] acc
 );
   logic signed [15:0] product;
-  logic signed [31:0] product_acc;
+  logic signed [31:0] product_ext;
 
   mult8 u_mult (.a(a), .b(b), .p(product));
-  assign
-    product_acc = {{16{product[15]}},product}; // sign-extend to 32 bits, since the product is 16bits
+
+`ifdef BUG3
+  assign product_ext = {16'b0, product};                 // BUG3: zero-extends
+`else
+  assign product_ext = {{16{product[15]}}, product};     // sign-extends
+`endif
 
   always_ff @(posedge clk) begin
-    if (clear)     acc <= 32'b0;
-    else if (en)   acc <= acc + product_acc;
+    if (clear)   acc <= '0;
+    else if (en) acc <= acc + product_ext;
   end
 endmodule
