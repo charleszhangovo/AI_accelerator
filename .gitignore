@@ -5,3 +5,5 @@ sim_*.out
 obj_*/
 cov_annotated/
 cov_*.dat
+build/
+
