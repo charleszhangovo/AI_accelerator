@@ -46,9 +46,9 @@ module ctrl_tb;
         @(posedge clk); #1; //allows its updated outputs to settle.
       end
       start = 0;
-      if (cycles != 3*N - 2) begin
+      if (cycles != 3*N - 1) begin
         errors = errors + 1;
-        $display("MISMATCH: run lasted %0d cycles, expected %0d", cycles, 3*N - 2);
+        $display("MISMATCH: run lasted %0d cycles, expected %0d", cycles, 3*N - 1);
       end
       expect_state("done", 0, 1);
       repeat (3) begin
@@ -72,7 +72,7 @@ module ctrl_tb;
     run_once(0);   // start from idle
     run_once(1);   // start from done, with a stray start mid-run
 
-    if (errors == 0) $display("PASS: done after %0d cycles", 3*N - 2);
+    if (errors == 0) $display("PASS: done after %0d cycles", 3*N - 1);
     else             $display("FAIL: %0d errors", errors);
     $finish;
   end

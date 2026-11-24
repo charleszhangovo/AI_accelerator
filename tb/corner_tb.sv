@@ -47,7 +47,7 @@ module corner_tb;
       base = c * N * N;
       @(negedge clk); start = 1;
       @(negedge clk); start = 0;
-      for (int cyc = 0; cyc < 3*N - 2; cyc++) begin
+      for (int cyc = 0; cyc < 3*N - 1; cyc++) begin
         for (int i = 0; i < N; i++) begin
           if (cyc < N) begin
             a_col[i*8 +: 8] = mem_a[base + i*N + cyc];

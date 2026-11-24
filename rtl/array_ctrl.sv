@@ -11,9 +11,9 @@ module array_ctrl #(parameter int N = 4) (
   state_t state;
 
 `ifdef BUG4
-  localparam int unsigned LAST = 3*N - 4;   // BUG4: done one cycle early
+  localparam int unsigned LAST = 3*N - 3;   // BUG4: done one cycle early
 `else
-  localparam int unsigned LAST = 3*N - 3;   // last RUN cycle number
+  localparam int unsigned LAST = 3*N - 2;   // last RUN cycle: run is 3N-1 cycles
 `endif
   int unsigned cnt;
 

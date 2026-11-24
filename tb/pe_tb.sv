@@ -37,12 +37,14 @@ module pe_tb;
         $dumpvars(0, pe_tb);
 
         // Test sequence
-        step(1, 0, 0, 0, 0, 0, 0); // clear
-        step(0, 1, 2, 3, 2, 3, 6); // en with a_in=2, b_in=3
-        step(0, 1, -1, -1, -1, -1, 7); // en with a_in=-1, b_in=-1
-        step(0, 1, -128, 1, -128, 1, -121); // en with a_in=-128, b_in=1
-        step(0, 0, 4, 5, -128, 1, -121); // no en
-        step(1, 0, 0, 0, 0, 0, 0); // clear again
+        //   clear en   a     b     exp_acc  exp_a  exp_b
+        step(1,    0,   0,    0,    0,       0,     0);     // clear everything
+        step(0,    1,   1,    5,    0,       1,     5);     // 1 x 5 queued, acc still 0
+        step(0,    1,   2,    7,    5,       2,     7);     // 5 lands in acc
+        step(0,    1,   0,    0,    19,      0,     0);     // 19 lands in acc
+        step(0,    1,   -128, -128, 19,      -128,  -128);  // 0 product, acc holds 19
+        step(1,    1,   9,    9,    16403,   0,     0);     // -128 x -128 lands; clear next
+        step(0,    0,   3,    4,    0,       3,     4);     // cleared, en low
 
         if (errors == 0) $display("PASS: All tests passed.");
         else             $display("FAIL: %0d mismatches found.", errors);

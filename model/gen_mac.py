@@ -15,7 +15,7 @@ def mac_model(cycles):
         elif en:
             acc = to_signed(acc + a * b, 32)
         expected.append(acc)
-    return expected
+    return [0] + expected[:-1]
 #This function simulates the MAC operation based on the input cycles
 
 def write_files(name, cycles):

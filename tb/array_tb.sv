@@ -43,6 +43,7 @@ module array_tb;
     cycle(0, 3, 0, 4, 0);   // PE(0,0) sees 3 x 4
     cycle(0, 0, 6, 0, 5);   // PE(0,1) sees 3 x 5, PE(1,0) sees 6 x 4
     cycle(0, 0, 0, 0, 0);   // PE(1,1) sees 6 x 5
+    cycle(0, 0, 0, 0, 0);   // extra cycle: the pipelined MAC lands one cycle later
 
     check(0, 0, 12);
     check(0, 1, 15);
