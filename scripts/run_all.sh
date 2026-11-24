@@ -61,4 +61,13 @@ else
   echo "stream tests FAILED"; tail -20 build_stream.log; fail=1
 fi
 
+echo "== AXI-Lite wrapper =="
+SRC="rtl/mult8.sv rtl/mac.sv rtl/pe.sv rtl/systolic_array.sv rtl/skew.sv rtl/array_ctrl.sv rtl/accel_top.sv rtl/accel_axi.sv"
+for N in 2 4; do
+  iverilog -g2012 -Paxi_tb.N=$N -o sim_axi.out $SRC tb/axi_tb.sv || { echo "axi N=$N BUILD ERROR"; fail=1; continue; }
+  out=$(vvp sim_axi.out +A=model/suite${N}_A.hex +B=model/suite${N}_B.hex +C=model/suite${N}_C.hex +CASES=206 | grep -E "PASS|FAIL|MISMATCH" || true)
+  echo "$out"
+  echo "$out" | grep -q "^PASS" || fail=1
+done
+
 if [ $fail -eq 0 ]; then echo "ALL CHECKS PASS"; else echo "SOME CHECKS FAILED"; exit 1; fi
