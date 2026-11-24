@@ -23,6 +23,11 @@ module mac_tb;
     $readmemh(exp_file, expv);
     errors = 0;
     clear = 0; en = 0; a = 0; b = 0;
+    // Warm-up: the pipelined MAC applies clear one edge late,
+    // so clear once before the checked cycles start.
+    @(negedge clk);
+    clear = 1; en = 0; a = 0; b = 0;
+    @(posedge clk);
 
     for (i = 0; i < n; i = i + 1) begin
       @(negedge clk);
