@@ -1,0 +1,28 @@
+{
+  "DESIGN_NAME": "asic_top4",
+  "VERILOG_FILES": [
+    "dir::../../rtl/mult8.sv",
+    "dir::../../rtl/mac.sv",
+    "dir::../../rtl/pe.sv",
+    "dir::../../rtl/systolic_array.sv",
+    "dir::../../rtl/skew.sv",
+    "dir::../../rtl/array_ctrl.sv",
+    "dir::../../rtl/accel_top.sv",
+    "dir::../../rtl/asic_top4.sv"
+  ],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 20,
+  "FP_CORE_UTIL": 40,
+  "PL_TARGET_DENSITY_PCT": 50,
+
+  "RUN_HEURISTIC_DIODE_INSERTION": true,
+  "GRT_ANTENNA_ITERS": 10,
+
+  "DESIGN_REPAIR_MAX_WIRE_LENGTH": 500,
+  "DESIGN_REPAIR_MAX_SLEW_PCT": 30,
+  "DESIGN_REPAIR_MAX_CAP_PCT": 30,
+
+  "RUN_POST_GRT_DESIGN_REPAIR": true,
+  "GRT_DESIGN_REPAIR_MAX_SLEW_PCT": 30,
+  "GRT_DESIGN_REPAIR_MAX_CAP_PCT": 30
+}
