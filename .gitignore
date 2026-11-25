@@ -6,4 +6,5 @@ obj_*/
 cov_annotated/
 cov_*.dat
 build/
+flow/openlane/runs/
 

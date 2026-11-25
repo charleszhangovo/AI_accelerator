@@ -1,0 +1,17 @@
+{
+  "DESIGN_NAME": "asic_top",
+  "VERILOG_FILES": [
+    "dir::../../rtl/mult8.sv",
+    "dir::../../rtl/mac.sv",
+    "dir::../../rtl/pe.sv",
+    "dir::../../rtl/systolic_array.sv",
+    "dir::../../rtl/skew.sv",
+    "dir::../../rtl/array_ctrl.sv",
+    "dir::../../rtl/accel_top.sv",
+    "dir::../../rtl/asic_top.sv"
+  ],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 20,
+  "FP_CORE_UTIL": 40,
+  "PL_TARGET_DENSITY_PCT": 50
+}
